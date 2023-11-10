@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct StartView: View {
+struct NormalMode: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var countries = ["UK","USA","Bangladesh", "Germany", "Argentina", "Brazil", "Canada", "Greece", "Russia", "Sweden"].shuffled()
+    @State private var countries = Countries.countries.shuffled()
+    //@State private var countries = ["UK","USA","Bangladesh", "Germany", "Argentina", "Brazil", "Canada", "Greece", "Russia", "Sweden"].shuffled()
     
     @State private var correctAnswer = Int.random(in: 0...2)
     
@@ -143,5 +144,5 @@ struct StartView: View {
 
 
 #Preview {
-    StartView()
+    NormalMode()
 }

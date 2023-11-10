@@ -25,15 +25,38 @@ struct  ContentView: View {
                     
                     Spacer(minLength: 20)
                     
-                    NavigationLink(destination: StartView()
+                    Text("Выберите режим:")
+                        .tint(.white)
+                        .fontWeight(.bold)
+                        .font(.title2)
+                        
+                    
+                    NavigationLink(destination: NormalMode()
                         .navigationBarBackButtonHidden(true)
                     ) {
-                        Text("НАЧАТЬ ИГРУ")
+                        Text("ОБЫЧНЫЙ РЕЖИМ")
                         
                             .fontWeight(.bold)
                             .tint(.black)
                     }
-                    .frame(width: 200, height: 50)
+                    .frame(width: 250, height: 50)
+                    .background(Color.white)
+                    .clipShape(Capsule())
+                    .overlay(Capsule()
+                        .stroke(Gradient(colors: [.red, .green])
+                               ))
+                    
+                    
+                    
+                    NavigationLink(destination: EndlessMode()
+                        .navigationBarBackButtonHidden(true)
+                    ) {
+                        Text("БЕСКОНЕЧНЫЙ РЕЖИМ")
+                        
+                            .fontWeight(.bold)
+                            .tint(.black)
+                    }
+                    .frame(width: 250, height: 50)
                     .background(Color.white)
                     .clipShape(Capsule())
                     .overlay(Capsule()
