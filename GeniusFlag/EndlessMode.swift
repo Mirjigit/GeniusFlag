@@ -13,10 +13,9 @@ struct EndlessMode: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    @State private var countries = ["UK","USA","Bangladesh", "Germany", "Argentina", "Brazil", "Canada", "Greece", "Russia", "Sweden"].shuffled()
+    @State private var countries = Countries.countries.shuffled()
     
     @State private var correctAnswer = Int.random(in: 0...2)
-    
     
     @State private var showingScore = false
     
@@ -27,7 +26,7 @@ struct EndlessMode: View {
     @State private var showResultView = false
     
     //ResultView(score: $score)
-
+    
     var body: some View {
         ZStack{
             LinearGradient(gradient: Gradient(colors: [.orange, .purple]), startPoint: .topTrailing, endPoint: .bottomLeading)
@@ -46,6 +45,7 @@ struct EndlessMode: View {
                                     .tint(.white)
                                 Text("выйти")
                                     .tint(.white)
+                                    .font(.system(size: 16))
                             }
                         }
                         .frame(width: 60, height: 60)
@@ -58,6 +58,7 @@ struct EndlessMode: View {
                                 VStack{
                                     Text("СЧЕТ")
                                         .tint(.white)
+                                        .font(.system(size: 16))
                                     Text("\(score)")
                                         .tint(.white)
                                         .font(.system(size: 25))
@@ -74,6 +75,7 @@ struct EndlessMode: View {
                                 VStack{
                                     Text("СЧЕТ")
                                         .tint(.white)
+                                        .font(.system(size: 16))
                                     Text("\(score)")
                                         .tint(.white)
                                         .font(.system(size: 25))
@@ -102,10 +104,11 @@ struct EndlessMode: View {
                     } label: {
                         Image(self.countries[number])
                             .renderingMode(.original)
+                            .resizable()
+                            .scaledToFill()
                             .frame(width: 250, height: 130)
-                            .clipShape(Capsule())
-                            .overlay(Capsule()
-                                .stroke(Color.black, lineWidth: 1))
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                            .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.black, lineWidth: 1))
                             .shadow(color: .black, radius: 4)
                     }
                 }
@@ -115,7 +118,7 @@ struct EndlessMode: View {
                 Spacer()
             }
             
-                    
+            
         }
         
     }
@@ -131,8 +134,7 @@ struct EndlessMode: View {
             askQuestion()
         }
         else {
-            self.showingScore = true
-            scoreTitle = "Неправильно! Это флаг \(countries[number])"
+            //self.showingScore = true
             showResultView = true
         }
     }

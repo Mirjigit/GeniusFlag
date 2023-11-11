@@ -6,19 +6,31 @@
 //
 
 import SwiftUI
+import Combine
 
 struct NormalMode: View {
     
     @Environment(\.presentationMode) var presentationMode
     
     @State private var countries = Countries.countries.shuffled()
-    //@State private var countries = ["UK","USA","Bangladesh", "Germany", "Argentina", "Brazil", "Canada", "Greece", "Russia", "Sweden"].shuffled()
     
     @State private var correctAnswer = Int.random(in: 0...2)
     
     @State private var score = 0
     
     @State private var scoreTitle = ""
+    
+    @State private var timeRemaining = 30
+    
+    @State private var questionsAsked = 0
+    
+    let maxQuestions = 15
+    
+    @State private var showResultView = false
+    
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    
     
     var body: some View {
         ZStack{
@@ -48,11 +60,11 @@ struct NormalMode: View {
                         } label: {
                             ZStack{
                                 VStack{
-                                    Text("СЧЕТ")
+                                    Text("ВРЕМЯ")
                                         .tint(.white)
-                                    Text("\(score)")
+                                    Text("\(timeRemaining)")
                                         .tint(.white)
-                                        .font(.system(size: 25))
+                                        .font(.system(size: 22))
                                 }
                             }
                         }
@@ -66,9 +78,9 @@ struct NormalMode: View {
                                 VStack{
                                     Text("СЧЕТ")
                                         .tint(.white)
-                                    Text("\(score)")
+                                    Text("15/\(score)")
                                         .tint(.white)
-                                        .font(.system(size: 25))
+                                        .font(.system(size: 22))
                                 }
                             }
                         }
@@ -94,37 +106,58 @@ struct NormalMode: View {
                     } label: {
                         Image(self.countries[number])
                             .renderingMode(.original)
+                            .resizable()
+                            .scaledToFill()
                             .frame(width: 250, height: 130)
-                            .clipShape(Capsule())
-                                .overlay(Capsule()
-                                    .stroke(Color.black, lineWidth: 1))
-                                .shadow(color: .black, radius: 4)
+                            .clipShape(RoundedRectangle(cornerRadius: 25))
+                            .overlay(RoundedRectangle(cornerRadius: 25).stroke(Color.black, lineWidth: 1))
+                            .shadow(color: .black, radius: 4)
                     }
                 }
-                /* Text("Общий счет: \(score)")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                */
                 Spacer()
             }
+            if showResultView {
+                ResultView(score: $score)
+            }
         }
+        .onReceive(timer) { _ in
+            if self.timeRemaining > 0 {
+                self.timeRemaining -= 1
+            }
+            if self.timeRemaining == 0 || self.questionsAsked == self.maxQuestions {
+                self.showResultView = true
+                self.timer.upstream.connect().cancel()
+            }
+        }
+        .onAppear {
+            self.askQuestion()
+        }
+        .onDisappear() {
+            self.timer.upstream.connect().cancel()
+        }
+        
     }
     func askQuestion(){
-        countries.shuffle()
-        correctAnswer = Int.random(in: 0...2)
+        if self.questionsAsked < self.maxQuestions {
+            self.countries.shuffle()
+            self.correctAnswer = Int.random(in: 0...2)
+            self.questionsAsked += 1
+        } else {
+            self.showResultView = true
+            self.timer.upstream.connect().cancel()
+        }
     }
     
     func flagTapped(_ number: Int){
-        if number == correctAnswer{
-            scoreTitle = "Правильный ответ"
+        if number == correctAnswer {
             score += 1
-            
         }
-        else{
-            scoreTitle = "Неправильно! Это флаг \(countries[number])"
-            score -= 1
+        if questionsAsked >= maxQuestions || timeRemaining == 0 {
+            showResultView = true
+            self.timer.upstream.connect().cancel()
+        } else {
+            askQuestion()
         }
-        askQuestion()
     }
 }
 

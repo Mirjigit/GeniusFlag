@@ -8,7 +8,24 @@
 import Foundation
 
 struct Countries {
-    static let countries = ["UK","USA","Bangladesh", "Germany", "Argentina", "Brazil", "Canada", "Greece", "Russia", "Sweden"]
-        //.shuffled()
+    static let countries = ["Argentina",
+                            "Bangladesh",
+                            "Brazil",
+                            "Canada",
+                            "Croatia",
+                            "France",
+                            "HongKong",
+                            "Jamaica",
+                            "Japan",
+                            "Kazakhstan",
+                            "Kyrgyzstan",
+                            "NorthKorea",
+                            "Russia",
+                            "SouthKorea",
+                            "Vietnam",]
+    
+    
+    
+    //.shuffled()
     
 }
