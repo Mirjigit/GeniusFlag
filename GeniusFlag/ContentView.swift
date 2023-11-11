@@ -23,8 +23,6 @@ struct  ContentView: View {
                             .scaledToFit()
                             .frame(width: 300)
                         
-                        
-                        
                         Spacer(minLength: 20)
                         
                         Text("Выберите режим:")
@@ -47,8 +45,6 @@ struct  ContentView: View {
                         .overlay(Capsule()
                             .stroke(Gradient(colors: [.red, .green])
                                    ))
-                        
-                        
                         
                         NavigationLink(destination: EndlessMode()
                             .navigationBarBackButtonHidden(true)

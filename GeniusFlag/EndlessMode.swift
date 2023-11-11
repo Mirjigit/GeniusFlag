@@ -9,18 +9,12 @@ import SwiftUI
 
 struct EndlessMode: View {
     
-    
-    
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var gameSettings: GameSettings // Теперь используем EnvironmentObject
-
     
     @State private var countries = Countries.countries.shuffled()
     
     @State private var correctAnswer = Int.random(in: 0...2)
-    
-    
-    //ResultView(score: $score)
     
     var body: some View {
         ZStack{
@@ -94,7 +88,6 @@ struct EndlessMode: View {
                 ForEach(0..<3) { number in
                     Button {
                         self.flagTapped(number)
-                        // self.showingScore = true
                     } label: {
                         Image(self.countries[number])
                             .renderingMode(.original)
@@ -106,14 +99,9 @@ struct EndlessMode: View {
                             .shadow(color: .black, radius: 4)
                     }
                 }
-                //                Text("Общий счет: \(score)")
-                //                    .font(.title)
-                //                    .fontWeight(.black)
                 Spacer()
             }
-            
         }
-        
     }
     func askQuestion() {
         countries.shuffle()

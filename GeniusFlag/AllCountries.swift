@@ -24,8 +24,4 @@ struct Countries {
                             "SouthKorea",
                             "Vietnam",]
     
-    
-    
-    //.shuffled()
-    
 }

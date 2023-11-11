@@ -10,21 +10,18 @@
 		DB0F0DBF2AF906A70090799E /* EndlessMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0F0DBE2AF906A70090799E /* EndlessMode.swift */; };
 		DB0F0DC12AFB86C30090799E /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0F0DC02AFB86C30090799E /* ResultView.swift */; };
 		DB3DAAD92AFE974200E169D0 /* AllCountries.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3DAAD82AFE974200E169D0 /* AllCountries.swift */; };
-		DB3DAADC2AFEA75100E169D0 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3DAADB2AFEA75100E169D0 /* TestView.swift */; };
 		DB3DAADE2AFFCADE00E169D0 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB3DAADD2AFFCADD00E169D0 /* GameSettings.swift */; };
 		DB593F092AF3A726005F5D62 /* GeniusFlagApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB593F082AF3A726005F5D62 /* GeniusFlagApp.swift */; };
 		DB593F0B2AF3A726005F5D62 /* NormalMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB593F0A2AF3A726005F5D62 /* NormalMode.swift */; };
 		DB593F0D2AF3A728005F5D62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB593F0C2AF3A728005F5D62 /* Assets.xcassets */; };
 		DB593F102AF3A728005F5D62 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB593F0F2AF3A728005F5D62 /* Preview Assets.xcassets */; };
 		DB593F172AF3CA83005F5D62 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB593F162AF3CA83005F5D62 /* ContentView.swift */; };
-		DB641FAD2AF3FA69002918C5 /* LevelSelect.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB641FAC2AF3FA69002918C5 /* LevelSelect.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DB0F0DBE2AF906A70090799E /* EndlessMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndlessMode.swift; sourceTree = "<group>"; };
 		DB0F0DC02AFB86C30090799E /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		DB3DAAD82AFE974200E169D0 /* AllCountries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCountries.swift; sourceTree = "<group>"; };
-		DB3DAADB2AFEA75100E169D0 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		DB3DAADD2AFFCADD00E169D0 /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		DB593F052AF3A726005F5D62 /* GeniusFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeniusFlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB593F082AF3A726005F5D62 /* GeniusFlagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeniusFlagApp.swift; sourceTree = "<group>"; };
@@ -32,7 +29,6 @@
 		DB593F0C2AF3A728005F5D62 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB593F0F2AF3A728005F5D62 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DB593F162AF3CA83005F5D62 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		DB641FAC2AF3FA69002918C5 /* LevelSelect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelect.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +48,6 @@
 				DB0F0DC02AFB86C30090799E /* ResultView.swift */,
 				DB593F0A2AF3A726005F5D62 /* NormalMode.swift */,
 				DB0F0DBE2AF906A70090799E /* EndlessMode.swift */,
-				DB641FAC2AF3FA69002918C5 /* LevelSelect.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -79,11 +74,10 @@
 				DB3DAAD82AFE974200E169D0 /* AllCountries.swift */,
 				DB593F082AF3A726005F5D62 /* GeniusFlagApp.swift */,
 				DB593F162AF3CA83005F5D62 /* ContentView.swift */,
+				DB3DAADD2AFFCADD00E169D0 /* GameSettings.swift */,
 				DB3DAADA2AFEA72200E169D0 /* View */,
 				DB593F0C2AF3A728005F5D62 /* Assets.xcassets */,
 				DB593F0E2AF3A728005F5D62 /* Preview Content */,
-				DB3DAADB2AFEA75100E169D0 /* TestView.swift */,
-				DB3DAADD2AFFCADD00E169D0 /* GameSettings.swift */,
 			);
 			path = GeniusFlag;
 			sourceTree = "<group>";
@@ -167,11 +161,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB3DAAD92AFE974200E169D0 /* AllCountries.swift in Sources */,
-				DB641FAD2AF3FA69002918C5 /* LevelSelect.swift in Sources */,
 				DB3DAADE2AFFCADE00E169D0 /* GameSettings.swift in Sources */,
 				DB0F0DBF2AF906A70090799E /* EndlessMode.swift in Sources */,
 				DB593F172AF3CA83005F5D62 /* ContentView.swift in Sources */,
-				DB3DAADC2AFEA75100E169D0 /* TestView.swift in Sources */,
 				DB593F0B2AF3A726005F5D62 /* NormalMode.swift in Sources */,
 				DB593F092AF3A726005F5D62 /* GeniusFlagApp.swift in Sources */,
 				DB0F0DC12AFB86C30090799E /* ResultView.swift in Sources */,

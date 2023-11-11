@@ -11,9 +11,7 @@ import Combine
 struct NormalMode: View {
     
     @Environment(\.presentationMode) var presentationMode
-    
-    @EnvironmentObject var gameSettings: GameSettings // Теперь используем EnvironmentObject
-    
+    @EnvironmentObject var gameSettings: GameSettings
     
     @State private var countries = Countries.countries.shuffled()
     
@@ -25,9 +23,7 @@ struct NormalMode: View {
     
     let maxQuestions = 15
     
-    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    
     
     
     var body: some View {
@@ -133,6 +129,7 @@ struct NormalMode: View {
         }
         
     }
+    
     func askQuestion(){
         if self.questionsAsked < self.maxQuestions {
             self.countries.shuffle()
@@ -147,15 +144,12 @@ struct NormalMode: View {
     func flagTapped(_ number: Int){
         if number == correctAnswer {
             gameSettings.score += 1
-            
         }
         if questionsAsked >= maxQuestions || timeRemaining == 0 {
             gameSettings.showingResultView = true
             self.timer.upstream.connect().cancel()
         } else {
             askQuestion()
-            
-            
         }
     }
     

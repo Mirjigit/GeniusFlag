@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct ResultView: View {
     @Binding var score: Int
     @EnvironmentObject var gameSettings: GameSettings
@@ -29,17 +27,17 @@ struct ResultView: View {
                     Spacer(minLength: 20)
                     
                     VStack{
-                            
-                            Text("Игра окончена!")
+                        
+                        Text("Игра окончена!")
                             .foregroundStyle(.black)
                             .fontWeight(.light)
-                                .font(.title)
-                                .padding(.bottom, 20)
-                            
-                            Text("Ваш счет: \(score)")
-                                .foregroundStyle(.black)
-                                .fontWeight(.semibold)
-                                .font(.title)
+                            .font(.title)
+                            .padding(.bottom, 20)
+                        
+                        Text("Ваш счет: \(score)")
+                            .foregroundStyle(.black)
+                            .fontWeight(.semibold)
+                            .font(.title)
                         
                     }
                     .frame(width: 300, height: 250)
@@ -52,8 +50,7 @@ struct ResultView: View {
                     Spacer(minLength: 20)
                     
                     Button(action: {
-                        gameSettings.showingResultView = false // Это должно скрыть ResultView
-
+                        gameSettings.showingResultView = false
                         gameSettings.resetGame()
                     }) {
                         HStack {
@@ -80,6 +77,5 @@ struct ResultView: View {
 }
 
 #Preview {
-    ResultView(score: .constant(5))            .environmentObject(GameSettings()) // Добавление GameSettings для предварительного просмотра
-
+    ResultView(score: .constant(5)).environmentObject(GameSettings())
 }
