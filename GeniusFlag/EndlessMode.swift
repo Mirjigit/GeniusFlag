@@ -12,18 +12,13 @@ struct EndlessMode: View {
     
     
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var gameSettings: GameSettings // Теперь используем EnvironmentObject
+
     
     @State private var countries = Countries.countries.shuffled()
     
     @State private var correctAnswer = Int.random(in: 0...2)
     
-    @State private var showingScore = false
-    
-    @State private var score = 0
-    
-    @State private var scoreTitle = ""
-    
-    @State private var showResultView = false
     
     //ResultView(score: $score)
     
@@ -59,7 +54,7 @@ struct EndlessMode: View {
                                     Text("СЧЕТ")
                                         .tint(.white)
                                         .font(.system(size: 16))
-                                    Text("\(score)")
+                                    Text("\(gameSettings.score)")
                                         .tint(.white)
                                         .font(.system(size: 25))
                                 }
@@ -76,7 +71,7 @@ struct EndlessMode: View {
                                     Text("СЧЕТ")
                                         .tint(.white)
                                         .font(.system(size: 16))
-                                    Text("\(score)")
+                                    Text("\(gameSettings.score)")
                                         .tint(.white)
                                         .font(.system(size: 25))
                                 }
@@ -95,7 +90,6 @@ struct EndlessMode: View {
                         .font(.largeTitle)
                         .fontWeight(.black)
                     
-                    NavigationLink(destination: ResultView(score: $score), isActive: $showResultView) { EmptyView() }
                 }
                 ForEach(0..<3) { number in
                     Button {
@@ -118,7 +112,6 @@ struct EndlessMode: View {
                 Spacer()
             }
             
-            
         }
         
     }
@@ -126,19 +119,15 @@ struct EndlessMode: View {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
     }
-    
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
-            scoreTitle = "Правильный ответ!"
-            score += 1
+            gameSettings.score += 1
             askQuestion()
         }
         else {
-            //self.showingScore = true
-            showResultView = true
+            gameSettings.showingResultView = true
         }
     }
-    
 }
 
 
@@ -150,5 +139,5 @@ struct EndlessMode: View {
 
 
 #Preview {
-    EndlessMode()
+    EndlessMode().environmentObject(GameSettings())
 }

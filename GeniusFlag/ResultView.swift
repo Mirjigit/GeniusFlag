@@ -7,10 +7,11 @@
 
 import SwiftUI
 
+
+
 struct ResultView: View {
-    
     @Binding var score: Int
-    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var gameSettings: GameSettings
     
     var body: some View {
         NavigationView{
@@ -46,12 +47,14 @@ struct ResultView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .overlay(RoundedRectangle(cornerRadius: 20)
                         .stroke(Gradient(colors: [.red, .green])))
-                    .shadow(color: .black, radius: 2)
+                    .shadow(color: .black, radius: 1)
                     
                     Spacer(minLength: 20)
                     
                     Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        gameSettings.showingResultView = false // Это должно скрыть ResultView
+
+                        gameSettings.resetGame()
                     }) {
                         HStack {
                             Image(systemName: "house")
@@ -77,5 +80,6 @@ struct ResultView: View {
 }
 
 #Preview {
-    ResultView(score: .constant(5))
+    ResultView(score: .constant(5))            .environmentObject(GameSettings()) // Добавление GameSettings для предварительного просмотра
+
 }

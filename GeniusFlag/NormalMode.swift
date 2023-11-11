@@ -12,13 +12,12 @@ struct NormalMode: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    @EnvironmentObject var gameSettings: GameSettings // Теперь используем EnvironmentObject
+    
+    
     @State private var countries = Countries.countries.shuffled()
     
     @State private var correctAnswer = Int.random(in: 0...2)
-    
-    @State private var score = 0
-    
-    @State private var scoreTitle = ""
     
     @State private var timeRemaining = 30
     
@@ -26,7 +25,6 @@ struct NormalMode: View {
     
     let maxQuestions = 15
     
-    @State private var showResultView = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -78,7 +76,7 @@ struct NormalMode: View {
                                 VStack{
                                     Text("СЧЕТ")
                                         .tint(.white)
-                                    Text("15/\(score)")
+                                    Text("15/\(gameSettings.score)")
                                         .tint(.white)
                                         .font(.system(size: 22))
                                 }
@@ -116,16 +114,14 @@ struct NormalMode: View {
                 }
                 Spacer()
             }
-            if showResultView {
-                ResultView(score: $score)
-            }
+            
         }
         .onReceive(timer) { _ in
-            if self.timeRemaining > 0 {
+            if self.timeRemaining > 0 && self.questionsAsked < self.maxQuestions {
                 self.timeRemaining -= 1
-            }
-            if self.timeRemaining == 0 || self.questionsAsked == self.maxQuestions {
-                self.showResultView = true
+            } else {
+                // Здесь мы устанавливаем showingResultView на true, что покажет ResultView
+                gameSettings.showingResultView = true
                 self.timer.upstream.connect().cancel()
             }
         }
@@ -143,22 +139,26 @@ struct NormalMode: View {
             self.correctAnswer = Int.random(in: 0...2)
             self.questionsAsked += 1
         } else {
-            self.showResultView = true
+            gameSettings.showingResultView = true
             self.timer.upstream.connect().cancel()
         }
     }
     
     func flagTapped(_ number: Int){
         if number == correctAnswer {
-            score += 1
+            gameSettings.score += 1
+            
         }
         if questionsAsked >= maxQuestions || timeRemaining == 0 {
-            showResultView = true
+            gameSettings.showingResultView = true
             self.timer.upstream.connect().cancel()
         } else {
             askQuestion()
+            
+            
         }
     }
+    
 }
 
 
@@ -168,14 +168,6 @@ struct NormalMode: View {
 
 
 
-
-
-
-
-
-
-
-
 #Preview {
-    NormalMode()
+    NormalMode().environmentObject(GameSettings())
 }
